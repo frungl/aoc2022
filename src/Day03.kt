@@ -29,6 +29,20 @@ fun main() {
         }
     }
 
+    fun part1Beauty(input: List<String>): Int {
+        return input.map { str ->
+            val (l, r) = str.chunked(str.length / 2).map { it.toSet() }
+            (l intersect r).single()
+        }.sumOf { cost(it) }
+    }
+
+    fun part2Beauty(input: List<String>): Int {
+        return input.chunked(3) { ch ->
+            val (a, b, c) = ch.map { it.toSet() }
+            (a intersect b intersect c).single()
+        }.sumOf { cost(it) }
+    }
+
     val testInput = readInput("Day03_test")
     check(part1(testInput) == 157)
     check(part2(testInput) == 70)
@@ -36,4 +50,6 @@ fun main() {
     val input = readInput("Day03")
     println(part1(input))
     println(part2(input))
+    println(part1Beauty(input))
+    println(part2Beauty(input))
 }
