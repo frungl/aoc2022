@@ -25,6 +25,9 @@ fun main() {
         }
     }
 
+    fun beautiful(input: List<String>, size: Int): Int =
+        input.first().windowed(size).indexOfFirst { it.toSet().size == size } + size
+
     val testInput = readInput("Day06_test")
     check(part1(testInput) == 7)
     check(part2(testInput) == 19)
@@ -32,4 +35,6 @@ fun main() {
     val input = readInput("Day06")
     println(part1(input))
     println(part2(input))
+    println(beautiful(input, 4))
+    println(beautiful(input, 14))
 }
